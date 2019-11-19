@@ -1,12 +1,21 @@
 <!DOCTYPE html>
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
     <link rel="stylesheet" href="main.css">
 </head>
 <html>
     <body>
         <div id="root">
-            <coupon></coupon>
-            <h3 v-if="couponApplied">Coupon was applied</h3>
+            <modal>
+                <template slot='header'>My Title</template>
+
+                data
+
+                <!-- Override default 2 buttons by using slot to have 1 button only -->
+                <template slot='footer'>
+                    <button class="button is-success">OK</button>
+                </template>
+            </modal>
         </div>
         <script src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
         <script src="main.js"></script>
