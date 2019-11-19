@@ -1,21 +1,42 @@
 <!DOCTYPE html>
 <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+    <link rel="stylesheet" href="main.css">
 </head>
 <html>
     <body>
         <div id="root">
-            <tabs>
-                <tab name="Day Light" :selected="true">
-                    <h1>content by day</h1>
-                </tab>
-                <tab name="Night Rider">
-                    <h1>content by night</h1>
-                </tab>
-                <tab name="Morning Bee">
-                    <h1>content by morning</h1>
-                </tab>
-            </tabs>
+            <div id="hbox1">
+                <div id="vbox1">
+                    <!-- List of users as buttons -->
+                    <div id="vbox11">
+                        <h1>List of users</h1>
+                        <div v-for="(user, index) in users">
+                            <button @click="setUser(index)">{{user.name}}</button>
+                        </div>
+                    </div>
+                    <!-- Form to add new user -->
+                    <div id="vbox12">
+                        <h1>Add user form</h1>
+                        Name
+                        <input v-model="newUser.name">
+                        <br>
+                        Age
+                        <input v-model="newUser.age">
+                        <br>
+                        Brands
+                        <input v-model="newUser.brands">
+                        <br>
+                        <button @click="addUser">Add User</button>
+                    </div>
+                </div>
+                <!-- Only show details if currentUser is not empty -->
+                <div id="vbox2" v-if="Object.keys(currentUser).length != 0">
+                    <h1>Current user</h1>
+                    <p>name: {{currentUser.name}}</p>
+                    <p>age: {{currentUser.age}}</p>
+                    <p>brands: {{currentUser.brands}}</p>
+                </div>
+            </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
         <script src="main.js"></script>

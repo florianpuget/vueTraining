@@ -1,56 +1,20 @@
-Vue.component('tabs', {
-    template: `
-        <div>
-            <div class="tabs">
-                <ul>
-                    <li v-for="tab in tabs" :class="{ 'is-active': tab.isActive }">
-                        <a :href="tab.href" @click="selectTab(tab)">{{ tab.name }}</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="tabs-details">
-                <slot></slot>
-            </div>
-        </div>
-    `,
-    data() {
-        return {
-            tabs: []
-        };
-    },
-    created() {
-        this.tabs = this.$children;
+new Vue({
+    el: '#root',
+    data: {
+        users: [
+            { name: "Ewa", age: "31", brands: "a, b, c" },
+            { name: "Flo", age: "31", brands: "d, e, f" }
+        ],
+        newUser: { name: "", age: "", brands: ""},
+        currentUser: {},
     },
     methods: {
-        selectTab(selectedTab) {
-            this.tabs.forEach(tab => tab.isActive = (tab.name == selectedTab.name));
+        addUser() {
+            this.users.push(this.newUser);
+            this.newUser = { name: "", age: "", brands: ""};
+        },
+        setUser(index) {
+            this.currentUser = this.users[index];
         }
     }
-})
-
-Vue.component('tab', {
-    template: `
-        <div v-if="isActive"><slot></slot></div>
-    `,
-    props: {
-        name: { required: true },
-        selected: { default: false },
-    },
-    data() {
-        return {
-            isActive: false,
-        };
-    },
-    computed: {
-        href() {
-            return '#' + this.name.toLowerCase().replace(" ", "-");
-        }
-    },
-    mounted() {
-        this.isActive = this.selected;
-    }
-})
-
-new Vue({
-    el: '#root'
 });
