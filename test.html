@@ -6,16 +6,12 @@
 <html>
     <body>
         <div id="root">
-            <modal>
-                <template slot='header'>My Title</template>
-
-                data
-
-                <!-- Override default 2 buttons by using slot to have 1 button only -->
-                <template slot='footer'>
-                    <button class="button is-success">OK</button>
-                </template>
-            </modal>
+            <progress-view inline-template>
+                <div>
+                    <h1>Your progress through this course is {{completionRate}}%</h1>
+                    <p><button @click="completionRate += 10">Update Completion Rate</button></p>
+                </div>
+            </progress-view>
         </div>
         <script src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
         <script src="main.js"></script>
