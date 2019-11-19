@@ -5,16 +5,10 @@
 <html>
     <body>
         <div id="root">
-            <coupon @applied="onCouponApplied"></coupon>
+            <coupon></coupon>
             <h3 v-if="couponApplied">Coupon was applied</h3>
         </div>
         <script src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
         <script src="main.js"></script>
     </body>
 </html>
-
-<!-- 
-    Child notifies parent by emitting event 'applied', the parents runs onCouponApplied method which sets the parameter couponApplied to true. 
-
-    This allows for the parent to react to something happening in the child component
- -->
