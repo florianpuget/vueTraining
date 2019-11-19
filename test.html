@@ -5,40 +5,16 @@
 <html>
     <body>
         <div id="root">
-            <div id="hbox1">
-                <div id="vbox1">
-                    <!-- List of users as buttons -->
-                    <div id="vbox11">
-                        <h1>List of users</h1>
-                        <div v-for="(user, index) in users">
-                            <button @click="setUser(index)">{{user.name}}</button>
-                        </div>
-                    </div>
-                    <!-- Form to add new user -->
-                    <div id="vbox12">
-                        <h1>Add user form</h1>
-                        Name
-                        <input v-model="newUser.name">
-                        <br>
-                        Age
-                        <input v-model="newUser.age">
-                        <br>
-                        Brands
-                        <input v-model="newUser.brands">
-                        <br>
-                        <button @click="addUser">Add User</button>
-                    </div>
-                </div>
-                <!-- Only show details if currentUser is not empty -->
-                <div id="vbox2" v-if="Object.keys(currentUser).length != 0">
-                    <h1>Current user</h1>
-                    <p>name: {{currentUser.name}}</p>
-                    <p>age: {{currentUser.age}}</p>
-                    <p>brands: {{currentUser.brands}}</p>
-                </div>
-            </div>
+            <coupon @applied="onCouponApplied"></coupon>
+            <h3 v-if="couponApplied">Coupon was applied</h3>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
         <script src="main.js"></script>
     </body>
 </html>
+
+<!-- 
+    Child notifies parent by emitting event 'applied', the parents runs onCouponApplied method which sets the parameter couponApplied to true. 
+
+    This allows for the parent to react to something happening in the child component
+ -->
